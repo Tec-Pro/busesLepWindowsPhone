@@ -1,4 +1,5 @@
-﻿using System;
+﻿using busesLep;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -27,6 +28,13 @@ namespace busesLepWP
             this.InitializeComponent();
 
             this.NavigationCacheMode = NavigationCacheMode.Required;
+            cbCitiesOrigin.Items.Add("hola");
+            cbCitiesOrigin.Items.Add("Azucar");
+            cbCitiesOrigin.Items.Add("Chau");
+            for(int i = 1; i<6; i++)
+            {
+                cbCantTickets.Items.Add(i);
+            }
         }
 
         /// <summary>
@@ -44,5 +52,11 @@ namespace busesLepWP
             // If you are using the NavigationHelper provided by some templates,
             // this event is handled for you.
         }
+
+        private void SearchButton(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SearchSchedules));
+        }
+        
     }
 }

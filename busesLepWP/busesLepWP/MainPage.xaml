@@ -6,9 +6,24 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource AppBarBackgroundThemeBrush}" >
 
+    
     <Grid>
+        <StackPanel Orientation="Vertical" Background="#FFFDFDFD">
+        <StackPanel Orientation="Vertical" Background="Red">
+                <TextBlock Margin="0,0,0,0" Text="Buses Lep" Style="{StaticResource HeaderText}"
+                           />
+        </StackPanel>
+            <TextBlock Margin="0,0,0,0" Text="Búsqueda de Horarios" FontWeight="Bold" Style="{StaticResource CommonTitleText}" />
+            <CheckBox Margin="10,0,0,0" Content="Ida y vuelta" FontSize="17.333" BorderBrush="#FF150505" Foreground="Black" />
+            <ComboBox x:Name="cbCitiesOrigin" Margin="10,0,10,0" BorderBrush="#FF040404" Foreground="Black" PlaceholderText="Ciudad de origen" SelectedIndex="-1" RequestedTheme="Light"  />
+            <ComboBox x:Name="cbCitiesDestiny" Margin="10,0,10,0" BorderBrush="#FF040404" Foreground="Black" PlaceholderText="Ciudad de destino" SelectedIndex="-1" RequestedTheme="Light"  />
+            <DatePicker Margin="10,0,10,0" BorderBrush="Black" Foreground="Black" />
+            <ComboBox x:Name="cbCantTickets" Margin="10,0,10,0" BorderBrush="#FF040404" Foreground="Black" PlaceholderText="Cantidad de pasajes" SelectedIndex="-1" RequestedTheme="Light"  />
+            <Button x:Name="button" Content="Buscar" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10,40,10,0" Click="SearchButton" RequestedTheme="Light"/>
+        </StackPanel>
+
 
     </Grid>
 </Page>
