@@ -7,13 +7,79 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"  >
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="btnEditPerfil" HorizontalAlignment="Stretch" Label="Editar Perfil" VerticalAlignment="Stretch" d:LayoutOverrides="Width, Height" Icon="Emoji2"/>
+                <AppBarButton x:Name="btnCambiarContra" HorizontalAlignment="Stretch" Label="Cambiar Contraseña" VerticalAlignment="Stretch" d:LayoutOverrides="Width, Height"/>
+                <AppBarButton x:Name="btnMisReservas" HorizontalAlignment="Stretch" Label="Mis Reservas" VerticalAlignment="Stretch" d:LayoutOverrides="Width, Height"/>
+                <AppBarButton x:Name="btnMisCompras" HorizontalAlignment="Stretch" Label="Mis Compras" VerticalAlignment="Stretch" d:LayoutOverrides="Width, Height"/>
+                <AppBarButton x:Name="bntCerrarSesion" HorizontalAlignment="Stretch" Label="Cerrar Sesión" VerticalAlignment="Stretch" d:LayoutOverrides="Width, Height"/>
+            </CommandBar.SecondaryCommands>
+            <AppBarButton x:Name="btnRercargar" Label="Recargar" Icon="Sync"/>
+            <AppBarButton x:Name="btnCompartir" Label="Compartir" Icon="ReShare"/>
+            <AppBarButton x:Name="btnUltBusquedas" Label="Ult. busquedas" Icon="Find"/>
+        </CommandBar>
+    </Page.BottomAppBar>
 
     <Grid>
         <StackPanel Orientation="Vertical" Background="#FFFDFDFD">
-            <StackPanel Orientation="Vertical" Background="Red">
-                <TextBlock Margin="0,0,0,0" Text="Buses Lep" Style="{StaticResource HeaderText}"
+            <StackPanel Orientation="Vertical" Background="#FFF90008">
+                <TextBlock Margin="0,0,0,0" Text="Buses Lep" Style="{StaticResource HeaderText}" FontSize="32" Foreground="White"
                            />
             </StackPanel>
+            <TextBlock x:Name="textBlock" TextWrapping="Wrap" Text="Búsqueda de horarios" FontSize="24" Foreground="Black" HorizontalAlignment="Center" Margin="0,20,0,0" FontWeight="Bold"/>
+            <ToggleSwitch x:Name="chkIdaVuelta" Header="ToggleSwitch" VerticalAlignment="Center" Foreground="Black" Margin="11,0,0,0" OffContent="Ida" OnContent="Ida y vuelta" Padding="0" HorizontalContentAlignment="Left" FontFamily="Calibri" FontSize="24" HorizontalAlignment="Left" Width="218" IsOn="True" Toggled="chkIdaVuelta_Toggled"/>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="10,0" Height="40">
+                <Grid Margin="0.167,0.167,0.167,-0.833">
+                    <TextBlock x:Name="txtCiudadOrigen" TextWrapping="Wrap" Foreground="#FF000003" Margin="10,5,0,5" FontSize="24" VerticalAlignment="Center" Text="Ciudad de origen" HorizontalAlignment="Left" Padding="0" FontFamily="Calibri" Width="368" PointerPressed="txtCiudadOrigen_PointerPressed"/>
+                    <Image x:Name="image" HorizontalAlignment="Right" VerticalAlignment="Top" d:LayoutOverrides="LeftMargin, RightMargin" Height="38" Width="38" Source="Assets/Images/spinner.png"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="10,0" Height="40">
+                <Grid>
+                    <TextBlock x:Name="txtCiudadDestino" TextWrapping="Wrap" Foreground="#FF000003" Margin="10,0,0,4" FontSize="24" VerticalAlignment="Bottom" HorizontalAlignment="Left" Padding="0" FontFamily="Calibri" Width="368">
+                    	<Run Text="Ciudad de "/>
+                    	<Run Text="destino"/>
+                    </TextBlock>
+                    <Image x:Name="image1" HorizontalAlignment="Right" VerticalAlignment="Top" d:LayoutOverrides="LeftMargin, RightMargin" Height="38" Width="38" Source="Assets/Images/spinner.png"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="10,0" Height="40">
+                <Grid>
+                    <TextBlock x:Name="txtFechaIda" TextWrapping="Wrap" Foreground="#FF000003" Margin="10,5,0,4" FontSize="24" VerticalAlignment="Center" Text="Fecha de ida" HorizontalAlignment="Left" Padding="0" FontFamily="Calibri" Width="368"/>
+                    <Image x:Name="image2" HorizontalAlignment="Right" VerticalAlignment="Center" Height="25" Width="25" Source="Assets/Images/icon_calendar.png" Margin="0,0,4,0"/>
+                </Grid>
+            </Border>
+            <Border x:Name="contenedorFechaVuelta" BorderBrush="Black" BorderThickness="1" Margin="10,0" Height="40">
+                <Grid x:Name="gridFechaVuelta">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="359*"/>
+                        <ColumnDefinition Width="8*"/>
+                        <ColumnDefinition Width="11*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock x:Name="txtFechaVuelta" TextWrapping="Wrap" Foreground="#FF000003" Margin="10,7,0.333,2" FontSize="24" VerticalAlignment="Center" Text="Fecha de vuelta" Padding="0" FontFamily="Calibri" Grid.ColumnSpan="3"/>
+                    <Image x:Name="image3" VerticalAlignment="Center" Height="25" Source="Assets/Images/icon_calendar.png" Margin="-10.167,7,4.333,6" Grid.Column="1" d:LayoutOverrides="TopMargin, BottomMargin, LeftPosition, RightPosition" Grid.ColumnSpan="2"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="10,0" Height="40">
+                <Grid>
+                    <TextBlock x:Name="txtCantPasajes" TextWrapping="Wrap" Foreground="#FF000003" Margin="10,5,0,4" FontSize="24" VerticalAlignment="Center" Text="Cantidad de pasajes" HorizontalAlignment="Left" Padding="0" FontFamily="Calibri" Width="368"/>
+                    <Image x:Name="image4" HorizontalAlignment="Right" VerticalAlignment="Top" d:LayoutOverrides="LeftMargin, RightMargin" Height="38" Width="38" Source="Assets/Images/spinner.png"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="10,45,10,0" Height="40">
+                <Grid>
+                    <TextBlock x:Name="btnBusqueda" TextWrapping="Wrap" Foreground="#FF000003" Margin="10,5,0,4" FontSize="24" VerticalAlignment="Center" d:LayoutOverrides="Width, LeftPosition, RightPosition" Text="Búsqueda" Padding="0" FontFamily="Calibri" HorizontalAlignment="Center"/>
+                </Grid>
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="10,20,10,0" Height="40">
+                <Grid>
+                    <Image x:Name="image4_Copy" HorizontalAlignment="Left" VerticalAlignment="Top" Height="29" Width="38" Source="Assets/Images/user_icon.png" Margin="43,5,0,0"/>
+                    <TextBlock x:Name="txtIngresarRegistrar" TextWrapping="Wrap" Foreground="#FF000003" Margin="10,5,0,4" FontSize="24" VerticalAlignment="Center" d:LayoutOverrides="Width, LeftPosition, RightPosition" Text="Ingresar / Registrarme" Padding="0" FontFamily="Calibri" HorizontalAlignment="Center"/>
+                </Grid>
+            </Border>
+
         </StackPanel>
     </Grid>
 </Page>

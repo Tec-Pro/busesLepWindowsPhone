@@ -1,16 +1,9 @@
-﻿using System;
+﻿using BindingExampleApp.ViewModels;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
@@ -35,5 +28,32 @@ namespace busesLep
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }
+
+
+        private void txtCiudadOrigen_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            Debug.WriteLine("clic ciudad origen");
+            //aca deberia obtener las ciudades
+            List<Ciudad> ciudadesOrigen = new List<Ciudad>();
+            ciudadesOrigen.Add(new Ciudad() { nombreCiudad = "Origen" });
+            ciudadesOrigen.Add(new Ciudad() { nombreCiudad = "Cordoba" });
+            ciudadesOrigen.Add(new Ciudad() { nombreCiudad = "Villa Maria" });
+            //abro la otra gui
+            Frame.Navigate(typeof(ListViewCiudades), ciudadesOrigen);
+
+
+        }
+
+
+
+        private void chkIdaVuelta_Toggled(object sender, RoutedEventArgs e)
+        {
+            if (contenedorFechaVuelta != null) {
+                if (chkIdaVuelta.IsOn)
+                    contenedorFechaVuelta.Visibility = Visibility.Visible;
+                else
+                    contenedorFechaVuelta.Visibility = Visibility.Collapsed;
+            }
+        }
     }
-}
+    }
